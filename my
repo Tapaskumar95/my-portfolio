@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tapas Kumar Swain | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #1f4e79;
+      --secondary: #f4f4f9;
+      --card-bg: #fff;
+      --text: #333;
+      --accent: #00bcd4;
+    }
+    * { box-sizing: border-box; }
+    body { font-family: 'Poppins', sans-serif; margin:0; padding:0; line-height:1.6; background:var(--secondary); color:var(--text); }
+
+    /* === HEADER with blurred background === */
+    header {
+      position: relative;
+      color: #fff;
+      padding: 100px 20px;
+      text-align: center;
+      overflow: hidden;
+      background-color: #1f4e79; /* fallback */
+    }
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url('portfolio immage.png') center top no-repeat;
+      background-size: contain;        /* keeps full face visible */
+      filter: blur(6px) brightness(0.6); /* blur + dark fade */
+      z-index: 0;
+    }
+    header * {
+      position: relative;
+      z-index: 1;
+    }
+
+    header h1 { margin:0; font-size:3rem; animation: fadeInDown 1s ease; text-shadow:2px 2px 5px rgba(0,0,0,0.6); }
+    .tagline { font-size:1.2rem; font-weight:600; margin-top:10px; overflow:hidden; white-space:nowrap; box-sizing:border-box; }
+    .marquee { display:inline-block; padding-left:100%; animation: marquee 15s linear infinite; }
+    @keyframes marquee { 0% { transform: translateX(0%);} 100% { transform: translateX(-100%);} }
+
+    nav { margin-top:20px; }
+    nav a { color:#fff; margin:0 15px; text-decoration:none; font-weight:bold; position:relative; }
+    nav a::after { content:''; display:block; width:0; height:2px; background:var(--accent); transition: width 0.3s; position:absolute; bottom:-5px; left:0; }
+    nav a:hover::after { width:100%; }
+
+    .hero-img { width:120px; height:120px; border-radius:50%; border:3px solid #fff; margin:20px auto; object-fit:cover; box-shadow:0 5px 15px rgba(0,0,0,0.4); transform: perspective(600px) rotateY(0); transition: transform 0.5s ease; }
+    .hero-img:hover { transform: perspective(600px) rotateY(15deg); }
+
+    section { padding:60px 20px; max-width:1100px; margin:auto; }
+    h2 { color:var(--primary); margin-bottom:20px; font-size:2rem; text-align:center; position:relative; text-shadow:1px 1px 3px rgba(0,0,0,0.2); }
+    h2::after { content:''; width:60px; height:3px; background:var(--accent); display:block; margin:10px auto; border-radius:2px; }
+
+    .grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:25px; }
+    .card { background:var(--card-bg); padding:25px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; opacity:0; transform:translateY(20px); }
+    .card.visible { opacity:1; transform:translateY(0); transition: all 0.6s ease; }
+    .card:hover { transform: translateY(-10px) rotate3d(1,1,0,10deg); box-shadow:0 8px 20px rgba(0,0,0,0.2); }
+
+    .projects .card { position:relative; overflow:hidden; }
+    .projects .card img { width:60px; margin:auto; display:block; transition:transform 0.4s ease; }
+    .projects .card:hover img { transform:scale(1.1); }
+    .projects .card div.overlay { margin-top:15px; color:#333; font-weight:500; text-align:center; font-size:0.95rem; }
+
+    .resume-btn { display:block; margin:30px auto; background:var(--accent); color:#fff; padding:12px 25px; border-radius:8px; text-decoration:none; font-weight:600; transition:background 0.3s; width:max-content; }
+    .resume-btn:hover { background:#0097a7; }
+
+    footer { background:var(--primary); color:#fff; text-align:center; padding:25px; margin-top:40px; }
+    footer a { color:#fff; text-decoration:none; }
+
+    .dark-mode { background:#121212; color:#e0e0e0; }
+    .dark-mode header { background:linear-gradient(135deg, #000, #222); }
+    .dark-mode .card { background:#1e1e1e; color:#e0e0e0; }
+
+    .toggle-btn { position:fixed; top:20px; right:20px; background:var(--accent); color:#fff; border:none; padding:10px 15px; border-radius:8px; cursor:pointer; font-weight:bold; }
+
+    @keyframes fadeInDown { from {opacity:0; transform:translateY(-20px);} to {opacity:1; transform:translateY(0);} }
+  </style>
+</head>
+<body>
+
+  <button class="toggle-btn" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+
+  <header>
+    <img src="portfolio immage.png" alt="Profile photo of Tapas Kumar Swain" class="hero-img">
+    <h1>Tapas Kumar Swain</h1>
+    <div class="tagline"><span class="marquee">Frontend Developer | UI/UX Designer | Freelancer</span></div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p style="text-align:center; max-width:800px; margin:auto;">I am a Frontend Developer & Freelancer with <b>3 years of experience</b> in React.js, JavaScript, HTML, CSS, Python, and DSA. I’ve delivered <b>80+ projects</b> (15 major, 29 minor, 40+ standard) across industries, with strong focus on <b>UI/UX design</b> using Canva and Figma. Actively freelancing on platforms like Upwork, Rooter, and Freelancer.com.</p>
+    <a href="Tapas_Kumar_Swain_resume.pdf" download class="resume-btn">📄 Download Resume</a>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="grid">
+      <div class="card">💻 <b>Frontend:</b> React.js, JavaScript (ES6+), HTML5, CSS3</div>
+      <div class="card">⚙️ <b>Backend & Logic:</b> Python, REST APIs, DSA</div>
+      <div class="card">🎨 <b>UI/UX Tools:</b> Canva, Figma</div>
+      <div class="card">🛠️ <b>Tools:</b> Git/GitHub, NPM, VS Code</div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <h2>Experience</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Freelance Frontend Developer</h3>
+        <p><i>Jan 2022 – Present | Remote</i></p>
+        <ul>
+          <li>Worked on Upwork, Rooter, and Freelancer.com</li>
+          <li>Delivered 80+ projects including 15 major apps with React frameworks</li>
+          <li>Specialized in UI/UX design with Canva and Figma</li>
+          <li>Integrated APIs, optimized performance, built scalable UIs</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Highlighted Projects</h2>
+    <div class="grid projects">
+      <div class="card">
+        <img src="https://img.icons8.com/fluency/96/shop.png" alt="E-Commerce App Logo">
+        <div class="overlay">🛒 <b>E-Commerce App</b> – React-based platform with cart, payment, and admin features.</div>
+      </div>
+      <div class="card">
+        <img src="https://img.icons8.com/fluency/96/source-code.png" alt="Portfolio Generator Logo">
+        <div class="overlay">🎨 <b>Portfolio Generator</b> – Customizable React portfolio builder for freelancers.</div>
+      </div>
+      <div class="card">
+        <img src="https://img.icons8.com/fluency/96/task.png" alt="Task Manager Logo">
+        <div class="overlay">✅ <b>Task Manager</b> – Productivity tool with React hooks and API integration.</div>
+      </div>
+      <div class="card">
+        <img src="https://img.icons8.com/fluency/96/design--v1.png" alt="UI/UX Showcase Logo">
+        <div class="overlay">🖌️ <b>UI/UX Portfolio Showcase</b> – Modern UI templates using Figma & Canva integrated with React.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <h2>Education</h2>
+    <p style="text-align:center;"><b>B.Sc. in Agriculture</b><br>Centurion University of Technology and Management – 2022</p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p style="text-align:center;">📞 8114723557</p>
+    <p style="text-align:center;">✉️ <a href="mailto:tapaskumarswainofficial@gmail.com">tapaskumarswainofficial@gmail.com</a></p>
+    <p style="text-align:center;">🌐 GitHub: <a href="https://github.com/Tapaskumar95" target="_blank">Tapaskumar95</a></p>
+  </section>
+
+  <footer>
+    <p>© 2025 Tapas Kumar Swain | Portfolio</p>
+  </footer>
+
+  <script>
+    function toggleDarkMode(){
+      document.body.classList.toggle('dark-mode');
+    }
+
+    const cards = document.querySelectorAll('.card');
+    window.addEventListener('scroll', () => {
+      const triggerBottom = window.innerHeight * 0.85;
+      cards.forEach(card => {
+        const cardTop = card.getBoundingClientRect().top;
+        if(cardTop < triggerBottom){
+          card.classList.add('visible');
+        }
+      });
+    });
+
+    // Dynamic color change every 10 seconds
+    const colors = ['#1f4e79', '#e91e63', '#009688', '#ff5722', '#3f51b5'];
+    let colorIndex = 0;
+    setInterval(() => {
+      document.documentElement.style.setProperty('--primary', colors[colorIndex]);
+      colorIndex = (colorIndex + 1) % colors.length;
+    }, 10000);
+  </script>
+</body>
+</html>
